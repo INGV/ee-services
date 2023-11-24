@@ -1,0 +1,12 @@
+# https://editor.swagger.io/
+
+POST http://localhost:8383/api/make_ee_ellipsoid
+Content-Type: application/json
+
+{
+  "todo": 1
+}
+
+### GET request with parameter
+GET http://localhost:8383/api/make_ee_ellipsoid?lat=40.6&lon=13.2&delta=1&xx=111&xy=55.5&yy=111
+Accept: application/json

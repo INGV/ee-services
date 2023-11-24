@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  title: early-est services open api
+  description: early-est services open api
+  contact:
+    name: Sergio Bruni
+    email: sergio.bruni@ingv.it
+  version: 1.0.0
+servers:
+paths:
+  /api/make_ee_ellipsoid:
+    description: Generate the ellipsoid
+    get:
+      description: Operation Generate the uncertainty ellipsoid
+      parameters:
+        - $ref: 'https://ingv.github.io/openapi/definitions.yaml#/components/parameters/lat'
+        - $ref: 'https://ingv.github.io/openapi/definitions.yaml#/components/parameters/lon'
+        - in: query
+          name: delta
+          description: Delta
+          required: true
+          schema:
+            type: number
+            example: 1
+        - in: query
+          name: xx
+          description: xx covariance
+          required: true
+          schema:
+            type: number
+            example: 36.3027
+        - in: query
+          name: xy
+          description: xy covariance
+          required: true
+          schema:
+            type: number
+            example: -0.0486165
+        - in: query
+          name: yy
+          description: yy covariance
+          required: true
+          schema:
+            type: number
+            example: 5.0177
+      responses:
+        '200':
+          description: Succesfull Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Feature'
+        '500':
+          description: Fail Result
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_result'
+
+components:
+  schemas:
+    geometry:
+      type: object
+      properties:
+        type:
+          type: string
+          example: Poligon
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: array
+              items:
+                type: integer
+                minItems: 2
+                maxItems: 2
+    properties:
+      type: object
+      properties:
+        phase_name:
+          type: string
+          example: P
+        file_name:
+          type: string
+          example: feature.json
+    Feature:
+      type: object
+      properties:
+        type:
+          type: string
+          example: feature
+        geometry:
+          $ref: '#/components/schemas/geometry'
+        properties:
+          $ref: '#/components/schemas/properties'
+
+    error_result:
+      type: object
+      properties:
+        error:
+            type: string
+        detail:
+          type: string
+          example: error details
