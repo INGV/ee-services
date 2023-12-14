@@ -81,11 +81,10 @@ pip install -r requirements.txt
 python main/api/services.py --help
 ```
 
-Here is some examples of launch:
+Here is an example of launch:
 
 ```sh
-python main/api/services.py --lat 35 --lon 10 --depth 50 --time 100 --phases P,S
-python main/api/services.py -l 35 -o 10 -d 50 -t 100 -p P,S -a 30
+python main/api/services.py --lat 35 --lon 10 --delta 50 --covxx 36.3027 --covxy -0.0486165 --covyy 5.0177
 ```
 
 

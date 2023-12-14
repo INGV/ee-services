@@ -61,16 +61,16 @@ if __name__ == '__main__':
         elif args.qml_string:
             quakeml = args.qml_string
 
-        lat, lon, delta, xx, xy, yy = services.parse_quakeml(quakeml)
-        ellipsoid = Ellipsoid(lat, lon, delta, xx, xy, yy)
+        lat, lon, delta, covxx, covxy, covyy = services.parse_quakeml(quakeml)
+        ellipsoid = Ellipsoid(lat, lon, delta, covxx, covxy, covyy)
 
     else:
-        for option in ['lat', 'lon', 'delta', 'xx', 'xy', 'yy']:
+        for option in ['lat', 'lon', 'delta', 'covxx', 'covxy', 'covyy']:
             if not option in args:
                 print(f"ERROR! missing option {option}")
                 exit()
 
-        ellipsoid = Ellipsoid(args.lat, args.lon, args.delta, args.xx, args.xy, args.yy)
+        ellipsoid = Ellipsoid(args.lat, args.lon, args.delta, args.covxx, args.covxy, args.covyy)
 
     geojson = ellipsoid.make_ee_ellipsoid()
     print (geojson)
