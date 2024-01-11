@@ -39,7 +39,7 @@ docker pull ingv/ee-services:latest
 #### 2) Build by yourself
 Clone the git repositry:
 ```sh
-git clone git clone https://github.com/INGV/ee-services.git
+git clone https://github.com/INGV/ee-services.git
 cd ee-services
 ```
 build the image:
